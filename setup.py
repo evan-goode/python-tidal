@@ -13,7 +13,7 @@ with open('HISTORY.rst') as f:
 
 setup(
     name='tidalapi4mopidy',
-    version='0.1.0',
+    version='0.1.1',
     description='Unofficial API for TIDAL music streaming service.',
     long_description=long_description,
     author='Thomas Amland, Simone Fantini',
