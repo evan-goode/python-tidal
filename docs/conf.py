@@ -52,15 +52,15 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'tidalapi'
-copyright = u'2014, Thomas Amland'
+project = u'tidalapi4mopidy'
+copyright = u'2016, Thomas Amland - Simone Fantini'
 
 # The version info for the project you're documenting, acts as replacement
 # for |version| and |release|, also used in various other places throughout
 # the built documents.
 #
 # The short X.Y version.
-version = '0.5.0'
+version = '0.1.0'
 # The full version, including alpha/beta/rc tags.
 release = version
 

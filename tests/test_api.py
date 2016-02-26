@@ -19,13 +19,13 @@ from __future__ import unicode_literals
 import logging
 import pytest
 import requests
-import tidalapi
+import tidalapi4mopidy
 
 logging.basicConfig(level=logging.DEBUG)
 
 @pytest.fixture()
 def session():
-    return tidalapi.Session()
+    return tidalapi4mopidy.Session()
 
 def test_artist(session):
     artist_id = 18888

@@ -12,15 +12,15 @@ with open('HISTORY.rst') as f:
     long_description += f.read() .replace('.. :changelog:', '')
 
 setup(
-    name='tidalapi',
-    version='0.5.0',
+    name='tidalapi4mopidy',
+    version='0.1.0',
     description='Unofficial API for TIDAL music streaming service.',
     long_description=long_description,
-    author='Thomas Amland',
-    author_email='thomas.amland@googlemail.com',
-    url='https://github.com/tamland/tidalapi',
+    author='Thomas Amland, Simone Fantini',
+    author_email='thomas.amland@googlemail.com, mones88@gmail.com',
+    url='https://github.com/mones88/python-tidal',
     license='LGPL',
-    packages=['tidalapi'],
+    packages=['tidalapi4mopidy'],
     install_requires=['requests'],
     keywords='',
     classifiers=[
