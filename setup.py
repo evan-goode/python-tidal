@@ -21,7 +21,7 @@ setup(
     url='https://github.com/mones88/python-tidal',
     license='LGPL',
     packages=['tidalapi4mopidy'],
-    install_requires=['requests'],
+    install_requires=['requests', 'pytest'],
     keywords='',
     classifiers=[
         'Development Status :: 4 - Beta',
