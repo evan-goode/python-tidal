@@ -23,9 +23,11 @@ import tidalapi4mopidy
 
 logging.basicConfig(level=logging.DEBUG)
 
-@pytest.fixture()
+@pytest.fixture(scope='module')
 def session():
-    return tidalapi4mopidy.Session()
+    s = tidalapi4mopidy.Session()
+    s.login("", "")
+    return s
 
 def test_artist(session):
     artist_id = 18888
@@ -84,3 +86,7 @@ def test_album_image(session):
 def test_playlist_image(session):
     playlist = session.get_playlist('33136f5a-d93a-4469-9353-8365897aaf94')
     assert requests.get(playlist.image).status_code == 200
+
+def test_get_track(session):
+    track = session.get_track('52901260')
+    assert track.name == 'Hello'

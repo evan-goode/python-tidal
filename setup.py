@@ -13,7 +13,7 @@ with open('HISTORY.rst') as f:
 
 setup(
     name='tidalapi4mopidy',
-    version='0.1.1',
+    version='0.1.2',
     description='Unofficial API for TIDAL music streaming service.',
     long_description=long_description,
     author='Thomas Amland, Simone Fantini',
@@ -21,7 +21,7 @@ setup(
     url='https://github.com/mones88/python-tidal',
     license='LGPL',
     packages=['tidalapi4mopidy'],
-    install_requires=['requests'],
+    install_requires=['requests', 'pytest'],
     keywords='',
     classifiers=[
         'Development Status :: 4 - Beta',

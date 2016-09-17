@@ -44,8 +44,7 @@ class Config(object):
     def __init__(self, quality=Quality.high):
         self.quality = quality
         self.api_location = 'https://api.tidalhifi.com/v1/'
-        self.api_token = 'P5Xbeo5LFvESeDy6' if self.quality == \
-            Quality.lossless else '4zx46pyr9o8qZNRw',
+        self.api_token = '4zx46pyr9o8qZNRw'
 
 
 class Session(object):
@@ -165,6 +164,9 @@ class Session(object):
 
     def get_track_radio(self, track_id):
         return self._map_request('tracks/%s/radio' % track_id, params={'limit': 100}, ret='tracks')
+
+    def get_track(self, track_id):
+        return self._map_request('tracks/%s' % track_id, ret='tracks')
 
     def _map_request(self, url, params=None, ret=None):
         json_obj = self.request('GET', url, params).json()
