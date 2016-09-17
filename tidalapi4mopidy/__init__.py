@@ -44,8 +44,7 @@ class Config(object):
     def __init__(self, quality=Quality.high):
         self.quality = quality
         self.api_location = 'https://api.tidalhifi.com/v1/'
-        self.api_token = 'P5Xbeo5LFvESeDy6' if self.quality == \
-            Quality.lossless else '4zx46pyr9o8qZNRw',
+        self.api_token = '4zx46pyr9o8qZNRw'
 
 
 class Session(object):
