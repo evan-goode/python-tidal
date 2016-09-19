@@ -44,7 +44,7 @@ class Config(object):
     def __init__(self, quality=Quality.high):
         self.quality = quality
         self.api_location = 'https://api.tidalhifi.com/v1/'
-        self.api_token = '4zx46pyr9o8qZNRw'
+        self.api_token = 'kgsOOmYk3zShYrNP'
 
 
 class Session(object):
@@ -63,12 +63,15 @@ class Session(object):
 
     def login(self, username, password):
         url = urljoin(self._config.api_location, 'login/username')
-        params = {'token': self._config.api_token}
         payload = {
+            'User-Agent': 'TIDAL_ANDROID/679 okhttp/3.3.1',
             'username': username,
             'password': password,
+            'token': self._config.api_token,
+            'clientUniqueKey': '9116f4461454fa12',
+            'clientVersion': '1.12.1'
         }
-        r = requests.post(url, data=payload, params=params)
+        r = requests.post(url, data=payload, )
         r.raise_for_status()
         body = r.json()
         self.session_id = body['sessionId']
@@ -80,19 +83,23 @@ class Session(object):
         """ Returns true if current session is valid, false otherwise. """
         if self.user is None or not self.user.id or not self.session_id:
             return False
-        url = urljoin(self._config.api_location, 'users/%s/subscription' % self.user.id)
-        return requests.get(url, params={'sessionId': self.session_id}).ok
+
+        path = 'users/%s/subscription' % self.user.id
+        return self.request('GET', path, params={'sessionId': self.session_id}).ok
 
     def request(self, method, path, params=None, data=None):
         request_params = {
-            'sessionId': self.session_id,
             'countryCode': self.country_code,
-            'limit': '999',
+            'limit': '999'
         }
         if params:
             request_params.update(params)
         url = urljoin(self._config.api_location, path)
-        r = requests.request(method, url, params=request_params, data=data)
+        headers = {
+            'User-Agent': 'TIDAL_ANDROID/679 okhttp/3.3.1',
+            'X-Tidal-SessionId': self.session_id
+        }
+        r = requests.request(method, url, params=request_params, headers=headers, data=data)
         log.debug("request: %s" % r.request.url)
         r.raise_for_status()
         if r.content:
