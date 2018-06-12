@@ -235,6 +235,8 @@ def _parse_album(json_obj, artist=None):
             kwargs['release_date'] = datetime.datetime(*map(int, json_obj['releaseDate'].split('-')))
         except ValueError:
             pass
+        except AttributeError:
+            pass
     return Album(**kwargs)
 
 
