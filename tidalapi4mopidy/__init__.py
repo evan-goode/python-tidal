@@ -198,9 +198,11 @@ class Session(object):
             return list(map(parse, items))
 
     def get_media_url(self, track_id):
-        params = {'soundQuality': self._config.quality}
-        r = self.request('GET', 'tracks/%s/streamUrl' % track_id, params)
-        return r.json()['url']
+        params = {'urlusagemode': 'STREAM',
+                  'assetpresentation': 'FULL',
+                  'audioquality': self._config.quality}
+        r = self.request('GET', 'tracks/%s/urlpostpaywall' % track_id, params)
+        return r.json()['urls'][0]
 
     def search(self, field, value):
         params = {
@@ -223,6 +225,7 @@ def _parse_artist(json_obj):
 def _parse_album(json_obj, artist=None):
     if artist is None:
         artist = _parse_artist(json_obj['artist'])
+    cover_art_size = 1280
     kwargs = {
         'id': json_obj['id'],
         'name': json_obj['title'],
@@ -237,6 +240,11 @@ def _parse_album(json_obj, artist=None):
             pass
         except AttributeError:
             pass
+    if 'cover' in json_obj:
+        kwargs['cover_art_url'] = "https://resources.tidal.com/images/%s/%sx%s.jpg" % (
+            json_obj['cover'].replace("-", "/"),
+            cover_art_size, cover_art_size)
+
     return Album(**kwargs)
 
 
